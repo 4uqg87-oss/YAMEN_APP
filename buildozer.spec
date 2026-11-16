@@ -1,3 +1,4 @@
+
 [app]
 
 title = البقاء للأقوى YAMEN
@@ -18,7 +19,7 @@ android.permissions = INTERNET
 
 android.api = 35
 android.minapi = 23
-android.ndk = 25b
+android.ndk = 28c
 android.archs = armeabi-v7a
 
 [buildozer]
