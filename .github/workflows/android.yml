@@ -1,3 +1,4 @@
+
 name: Build YAMEN APK
 
 on:
@@ -35,17 +36,15 @@ jobs:
         run: |
           sdkmanager "platform-tools"
           sdkmanager "platforms;android-35"
-          sdkmanager "build-tools;37.0.0"
+          sdkmanager "build-tools;35.0.0"
+          sdkmanager "ndk;28.2.13676358"
 
-      - name: Prepare Buildozer SDK
+      - name: Prepare Buildozer
         run: |
           mkdir -p "$HOME/.buildozer/android/platform"
           ln -s "$ANDROID_HOME" "$HOME/.buildozer/android/platform/android-sdk"
-
-      - name: Fix SDK Manager path
-        run: |
-          mkdir -p "$ANDROID_HOME/tools/bin"
-          ln -sf "$(command -v sdkmanager)" "$ANDROID_HOME/tools/bin/sdkmanager"
+          mkdir -p "$HOME/.buildozer/android/platform"
+          ln -s "$ANDROID_HOME/ndk/28.2.13676358" "$HOME/.buildozer/android/platform/android-ndk-r28c"
 
       - name: Install Buildozer
         run: |
