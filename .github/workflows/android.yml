@@ -1,3 +1,4 @@
+
 name: Build YAMEN APK
 
 on:
@@ -31,7 +32,13 @@ jobs:
           pip install buildozer cython==0.29.36
 
       - name: Accept Android SDK licenses
-        run: yes | sdkmanager --licenses
+        run: |
+          SDKMANAGER=$(find "$ANDROID_HOME" -name sdkmanager -type f | head -n 1)
+          if [ -z "$SDKMANAGER" ]; then
+            echo "sdkmanager not found"
+            exit 1
+          fi
+          yes | "$SDKMANAGER" --licenses
 
       - name: Build Android APK
         run: buildozer android debug
