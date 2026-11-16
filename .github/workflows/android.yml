@@ -43,7 +43,10 @@ jobs:
         run: |
           mkdir -p "$HOME/.buildozer/android/platform"
           ln -s "$ANDROID_HOME" "$HOME/.buildozer/android/platform/android-sdk"
-          mkdir -p "$HOME/.buildozer/android/platform"
+          mkdir -p "$ANDROID_HOME/tools/bin"
+          ln -sf "$(command -v sdkmanager)" "$ANDROID_HOME/tools/bin/sdkmanager"
+          mkdir -p "$HOME/.buildozer/android/platform/android-sdk/tools/bin"
+          ln -sf "$(command -v sdkmanager)" "$HOME/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager"
           ln -s "$ANDROID_HOME/ndk/28.2.13676358" "$HOME/.buildozer/android/platform/android-ndk-r28c"
 
       - name: Install Buildozer
