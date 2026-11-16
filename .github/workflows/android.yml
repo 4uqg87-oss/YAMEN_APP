@@ -1,4 +1,3 @@
-
 name: Build YAMEN APK
 
 on:
@@ -42,6 +41,11 @@ jobs:
         run: |
           mkdir -p "$HOME/.buildozer/android/platform"
           ln -s "$ANDROID_HOME" "$HOME/.buildozer/android/platform/android-sdk"
+
+      - name: Fix SDK Manager path
+        run: |
+          mkdir -p "$ANDROID_HOME/tools/bin"
+          ln -sf "$(command -v sdkmanager)" "$ANDROID_HOME/tools/bin/sdkmanager"
 
       - name: Install Buildozer
         run: |
